@@ -7,10 +7,17 @@ const kActiveCardColor =Color(0xff1d1e33);
 const kInactivecardColor=Color(0xff111328); 
 const kBottomContainerColor=Color(0xFFeb1555);
 
+const  kLargeText= TextStyle(
+            fontSize: 25.0,
+            fontWeight: FontWeight.bold ,
+            color: Colors.white, 
+);
+
 const  kLabelTextStyle= TextStyle(
             fontSize: 18.0,
             color: Color(0xff8d8e98),);
 const kNumberStyle=TextStyle(
             fontSize: 50.0,
             fontWeight:FontWeight.w900 ,);
+
 

@@ -1,4 +1,5 @@
- import 'package:flutter/material.dart';
+ import 'package:bmi_cal/screen/result_page.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -101,7 +102,7 @@ class _MainPageState extends State<MainPage> {
             
             mainAxisAlignment: MainAxisAlignment.center,
           children: [   
-            SizedBox(height: 10),  
+            // SizedBox(height: 10),  
             Text('HEIGHT',style:kLabelTextStyle ,),
                Row(
 
@@ -109,7 +110,7 @@ class _MainPageState extends State<MainPage> {
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
                     children: [
-                      Padding( padding: EdgeInsets.only(bottom: 15,),),
+                      // Padding( padding: EdgeInsets.only(bottom: 15,),),
                       Text(
                         height.toString(),
                         style: kNumberStyle,
@@ -240,13 +241,20 @@ class _MainPageState extends State<MainPage> {
             ],
           ),         
           ),
-          Container(
-            color: kBottomContainerColor,
-            margin: EdgeInsets.only(top: 10),
-            width: double.infinity,
-            height: kBottomContainerHeight,
-
-
+          GestureDetector(
+            onTap:() {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>ResultPage()));
+              
+            },
+            child: Container(
+              child: Center(child: Text('CALCULATE',style: kLargeText,)),
+              color: kBottomContainerColor,
+              margin: EdgeInsets.only(top: 10),
+              width: double.infinity,
+              height: kBottomContainerHeight,
+          
+          
+            ),
           ),
         ],
       ), 
