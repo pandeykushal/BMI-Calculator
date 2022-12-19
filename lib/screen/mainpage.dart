@@ -54,6 +54,8 @@ class _MainPageState extends State<MainPage> {
     }
   }
   int height =180;
+  int Weight = 40 ;
+
 
   @override
   Widget build(BuildContext context) {
@@ -166,11 +168,53 @@ class _MainPageState extends State<MainPage> {
             children: [
               Expanded(child: ReusableCard(
                colour: kActiveCardColor,
+               cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+               ),
                
               ),
               ),
               Expanded(child: ReusableCard(
                  colour:kActiveCardColor,
+                 cardChild: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Weight',style: kLabelTextStyle,),
+                    Text(Weight.toString(),
+                    style: kNumberStyle,),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        
+                        RoundIconButton(
+                          icon: FontAwesomeIcons.plus,
+                          onPressed: (){
+                            setState(() {
+                              Weight++;
+                            });
+                              
+
+                          },
+                        ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          RoundIconButton(
+                          icon: FontAwesomeIcons.minus,
+                          onPressed: (){
+                            setState(() {
+                              Weight--;
+                            });
+
+                          },
+                        ), 
+                          
+                          
+                      ],
+                    ),
+                  ],
+                 ),
               ),
               ),
             ],
@@ -189,8 +233,25 @@ class _MainPageState extends State<MainPage> {
     );
   }
 }
+class RoundIconButton extends StatelessWidget {
+  RoundIconButton({required this.icon , required this.onPressed});
+  final IconData icon ;
+  final Function onPressed;
+  
 
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: Icon(icon),
+      elevation: 6.0,
+      shape: CircleBorder(),
+      fillColor: Color(0xff4c4f5e),
+      constraints:BoxConstraints.tightFor(      
+        height: 56,
+        width: 56,
+      )  ,
 
-
-
-
+      onPressed: (){},
+    );
+  }
+}
