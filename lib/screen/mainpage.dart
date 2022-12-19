@@ -26,35 +26,14 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-//  Gender selectedGender  ;
+ Gender? selectedGender  ;
 
   Color maleCardColor =kInactivecardColor;
   Color FemaleCardColor=kInactivecardColor;
-  void updateColor(Gender selectedGender){
-    //male card pressed
-    if (selectedGender==Gender.male){
-      if(maleCardColor==kInactivecardColor){
-        maleCardColor=kActiveCardColor;
-        FemaleCardColor=kInactivecardColor;
-      }else{
-        maleCardColor==kInactivecardColor;
-      }
-    }
-    //female card pressed 
-    if (selectedGender==Gender.female){
-      if (FemaleCardColor==kInactivecardColor){
-        FemaleCardColor= kActiveCardColor;
-        maleCardColor=kInactivecardColor;
 
-      }else{
-        FemaleCardColor==kInactivecardColor;
-      }
-      
-
-    }
-  }
   int height =180;
   int Weight = 40 ;
+  int Age =20;
 
 
   @override
@@ -74,16 +53,16 @@ class _MainPageState extends State<MainPage> {
                 child:  GestureDetector(
                   onTap: (){
                     setState(() {
-                      updateColor(Gender.male);
-                      // selectedGender = Gender.male;
+                      
+                      selectedGender = Gender.male;
                       
                       
                     });
 
                   },
                   child: ReusableCard(
-                  colour:maleCardColor,
-                  // colour:selectedGender==Gender.male  ? activeCardColor  :inactivecardColor,
+                 
+                  colour:selectedGender==Gender.male  ? kActiveCardColor  :kInactivecardColor,
                   cardChild: IconContent(
                     icon: FontAwesomeIcons.mars,
                     label: 'Male',
@@ -96,14 +75,13 @@ class _MainPageState extends State<MainPage> {
              GestureDetector(
               onTap: (){
                 setState(() {
-                  // selectedGender = Gender.female;
+                  selectedGender = Gender.female;
                  
-                  updateColor(Gender.female);
+                  
                 });
               },
                child: ReusableCard(
-                colour:FemaleCardColor,
-                //  colour:selectedGender==Gender.female?activeCardColor:inactivecardColor,
+                colour:selectedGender==Gender.female?kActiveCardColor:kInactivecardColor,
                 cardChild:IconContent(icon: FontAwesomeIcons.venus,
                 label: 'Female',
                 ),
@@ -114,18 +92,24 @@ class _MainPageState extends State<MainPage> {
         ],
           ),
           ),
-          Expanded(child: 
+          Expanded(
+            child:    
+           
           ReusableCard(
-           colour: kActiveCardColor,
+            colour: kActiveCardColor,
            cardChild: Column(
+            
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [ 
-              Text('HEIGHT',style:kLabelTextStyle ,),
-              Row(
+          children: [   
+            SizedBox(height: 10),  
+            Text('HEIGHT',style:kLabelTextStyle ,),
+               Row(
+
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
                     children: [
+                      Padding( padding: EdgeInsets.only(bottom: 15,),),
                       Text(
                         height.toString(),
                         style: kNumberStyle,
@@ -170,6 +154,40 @@ class _MainPageState extends State<MainPage> {
                colour: kActiveCardColor,
                cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                 children: [
+                  Text('AGE',style: kLabelTextStyle,),
+                  Text(Age.toString(),
+                    style: kNumberStyle,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                       RoundIconButton(
+                          icon: FontAwesomeIcons.plus,
+                          onPressed: (){
+                            print('Weight');
+                            setState(() {
+                              Age++;
+                              
+                            });
+                              },
+                       ),
+                       SizedBox(
+                        width: 25.0,
+                       ),
+                       RoundIconButton(
+                          icon: FontAwesomeIcons.minus,
+                          onPressed: (){
+                            print('Weight');
+                            setState(() {
+                              Age++;
+                              
+                            });
+                              },
+                       ),
+                      ],
+                    ),
+                 ],
+                 
                ),
                
               ),
@@ -190,15 +208,17 @@ class _MainPageState extends State<MainPage> {
                         RoundIconButton(
                           icon: FontAwesomeIcons.plus,
                           onPressed: (){
+                            print('Weight');
                             setState(() {
                               Weight++;
+                              
                             });
                               
 
                           },
                         ),
                           SizedBox(
-                            width: 10,
+                            width: 25,
                           ),
                           RoundIconButton(
                           icon: FontAwesomeIcons.minus,
@@ -234,9 +254,11 @@ class _MainPageState extends State<MainPage> {
   }
 }
 class RoundIconButton extends StatelessWidget {
-  RoundIconButton({required this.icon , required this.onPressed});
+  RoundIconButton({required this.icon ,
+   required this.onPressed
+   });
   final IconData icon ;
-  final Function onPressed;
+  final VoidCallback onPressed;
   
 
   @override
@@ -251,7 +273,9 @@ class RoundIconButton extends StatelessWidget {
         width: 56,
       )  ,
 
-      onPressed: (){},
+      onPressed: 
+       onPressed
+      
     );
   }
 }
