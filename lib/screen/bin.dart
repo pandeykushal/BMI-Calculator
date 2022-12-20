@@ -1,22 +1,27 @@
 import 'package:bmi_cal/screen/constannts/constanstants.dart';
 import 'package:bmi_cal/screen/widget/button.dart';
 import 'package:bmi_cal/screen/widget/reusable_card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class ResultPage extends StatelessWidget {
+class ResultPage extends StatefulWidget {
+  const ResultPage({super.key});
 
-  ResultPage({required this.bmiResult,required this.ResultText,required this.interpretation });
+  @override
+  State<ResultPage> createState() => _ResultPageState();
+}
 
-  final String bmiResult ;
-  final String  ResultText;
-  final  String interpretation;
+class _ResultPageState extends State<ResultPage> {
+  
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
+
+      appBar: AppBar(
         title: Text('BMI CALCULATOR'),
       ),
       body: Column(
@@ -35,17 +40,15 @@ class ResultPage extends StatelessWidget {
             flex: 5,
             child: ReusableCard(
               colour: kActiveCardColor,
-              cardChild: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(ResultText.toUpperCase(),style: kResultText,),
-                    Text(bmiResult,style: kBMITextstyle,),
-                    Text(interpretation,style: kBMIBodyTextstyle,),
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text("normal",style: kResultText,),
+                  Text('20.3',style: kBMITextstyle,),
+                  Text('Your BMI result is Quite low,you should eat normal !',style: kBMIBodyTextstyle,),
 
-                ]),
-              ),
+              ]),
             ),
           
           ),
@@ -59,8 +62,7 @@ class ResultPage extends StatelessWidget {
       ]
       
       ),
-
-
+      
     );
   }
 }

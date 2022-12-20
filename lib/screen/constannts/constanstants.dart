@@ -20,4 +20,21 @@ const kNumberStyle=TextStyle(
             fontSize: 50.0,
             fontWeight:FontWeight.w900 ,);
 
+const  kTitleTextStyle= TextStyle(
+            fontSize: 50.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white
+            );
+const  kResultText= TextStyle(
+            fontSize: 22.0,
+            fontWeight: FontWeight.bold,
+            color: Color(0xff24D876), );
 
+const  kBMITextstyle= TextStyle(
+            fontSize: 50.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white );
+const  kBMIBodyTextstyle= TextStyle(
+            fontSize: 22.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white );            

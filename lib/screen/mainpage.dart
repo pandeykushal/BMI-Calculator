@@ -1,4 +1,6 @@
  import 'package:bmi_cal/screen/result_page.dart';
+import 'package:bmi_cal/screen/widget/Round_iconButton.dart';
+import 'package:bmi_cal/screen/widget/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -6,6 +8,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'constannts/constanstants.dart';
 import 'widget/icon_content.dart';
 import 'widget/reusable_card.dart';
+import 'package:bmi_cal/screen/logic_Part/calculation.dart';
+import 'package:bmi_cal/screen/result_page.dart';
 
 
 
@@ -33,7 +37,7 @@ class _MainPageState extends State<MainPage> {
   Color FemaleCardColor=kInactivecardColor;
 
   int height =180;
-  int Weight = 40 ;
+  int weight = 40 ;
   int Age =20;
 
 
@@ -156,7 +160,7 @@ class _MainPageState extends State<MainPage> {
                cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                  children: [
-                  Text('AGE',style: kLabelTextStyle,),
+                  const Text('AGE',style: kLabelTextStyle,),
                   Text(Age.toString(),
                     style: kNumberStyle,),
                     Row(
@@ -172,7 +176,7 @@ class _MainPageState extends State<MainPage> {
                             });
                               },
                        ),
-                       SizedBox(
+                       const SizedBox(
                         width: 25.0,
                        ),
                        RoundIconButton(
@@ -180,7 +184,7 @@ class _MainPageState extends State<MainPage> {
                           onPressed: (){
                             print('Weight');
                             setState(() {
-                              Age++;
+                              Age--;
                               
                             });
                               },
@@ -198,8 +202,8 @@ class _MainPageState extends State<MainPage> {
                  cardChild: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Weight',style: kLabelTextStyle,),
-                    Text(Weight.toString(),
+                    const Text('Weight',style: kLabelTextStyle,),
+                    Text(weight.toString(),
                     style: kNumberStyle,),
 
                     Row(
@@ -211,21 +215,21 @@ class _MainPageState extends State<MainPage> {
                           onPressed: (){
                             print('Weight');
                             setState(() {
-                              Weight++;
+                              weight++;
                               
                             });
                               
 
                           },
                         ),
-                          SizedBox(
+                          const SizedBox(
                             width: 25,
                           ),
                           RoundIconButton(
                           icon: FontAwesomeIcons.minus,
                           onPressed: (){
                             setState(() {
-                              Weight--;
+                              weight--;
                             });
 
                           },
@@ -241,49 +245,20 @@ class _MainPageState extends State<MainPage> {
             ],
           ),         
           ),
-          GestureDetector(
-            onTap:() {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>ResultPage()));
-              
-            },
-            child: Container(
-              child: Center(child: Text('CALCULATE',style: kLargeText,)),
-              color: kBottomContainerColor,
-              margin: EdgeInsets.only(top: 10),
-              width: double.infinity,
-              height: kBottomContainerHeight,
-          
-          
-            ),
+          ButtomButton(
+            buttomTitle: 'CALCULATE',
+            onTap: () {
+              ClaculationBrain calc =ClaculationBrain(height: height,weight: weight);
+
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>ResultPage(
+          bmiResult:calc.calcuteBMI()  ,
+          ResultText: calc.getresult(),
+          interpretation:calc.getInterpretation() ,
+        ))); 
+      },
           ),
         ],
       ), 
-    );
-  }
-}
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({required this.icon ,
-   required this.onPressed
-   });
-  final IconData icon ;
-  final VoidCallback onPressed;
-  
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      elevation: 6.0,
-      shape: CircleBorder(),
-      fillColor: Color(0xff4c4f5e),
-      constraints:BoxConstraints.tightFor(      
-        height: 56,
-        width: 56,
-      )  ,
-
-      onPressed: 
-       onPressed
-      
     );
   }
 }
