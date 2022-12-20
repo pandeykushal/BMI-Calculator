@@ -1,3 +1,4 @@
+import 'package:bmi_cal/screen/constannts/constanstants.dart';
 import 'package:bmi_cal/screen/mainpage.dart';
 import 'package:flutter/material.dart';
 
@@ -12,9 +13,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData.dark().copyWith(
-        // primarySwatch: const Color(0Xff0A0E21 ),
-       primaryColor: const Color(0Xff0A0E21 ),
+        theme: getApplicationTheam().copyWith(
+      primaryColor: const Color(0Xff0A0E21 ),
+      //  primaryColor: const Color(0Xff0A0E21 ),
        scaffoldBackgroundColor: Color(0xff0A0E21),
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.purple),
           ),
